@@ -1,0 +1,5 @@
+# Exchange of linear channel
+# ILL-TYPED --  a is not fully used
+# Type checks with OPTION -not-full
+
+<a> b!a | b?z.c!z | c?x.x!e

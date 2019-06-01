@@ -1,0 +1,4 @@
+# MUTUAL DEADLOCK
+# ILL-TYPED
+
+<a,b,c,d> e!a | d!v1 | e?xa.(c?y.xa!v2| b?z.c!v3 | d?w.xa?k.b!v4)      

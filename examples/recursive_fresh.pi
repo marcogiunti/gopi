@@ -1,0 +1,3 @@
+# RECURSIVE PRINT OF FRESH CHANNEL
+
+*( a?x.print x | new b { a!b } )

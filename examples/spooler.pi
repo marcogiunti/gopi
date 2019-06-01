@@ -1,0 +1,8 @@
+# SPOOLER
+# ILL-TYPED with OPTION -cat 2 -- context can receive a from p
+
+let Printer = hide a [ a!c.p!a | a?x.spool!x | p?w ] in
+
+let Spooler = spool?z.print z in
+
+Printer | Spooler  

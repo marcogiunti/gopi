@@ -1,0 +1,15 @@
+# SECRET CHAT PROTOCOL
+
+let Alice = alice?ch1.(random?friend.friend!ch1 | ch1!helloAlice) in
+
+let Bob = bob?ch2.ch2!helloBob | getRandom?rand1.rand1?stranger.stranger!helloBob in
+
+let Carl = carl?ch3.ch3!helloCarl in
+
+let Board = board?secret.*secret?message.print message in
+
+let ChatServer = <board> setup?user. hide chat [ user!chat | Alice | Bob | Carl | board!chat | Board] in	
+
+let  Chat = setup!alice.(random!bob | random!carl)  in
+
+new getMsg {new setup { new random { new alice { new bob { new carl {Chat | ChatServer}}}}}} 
