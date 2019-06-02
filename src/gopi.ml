@@ -562,10 +562,10 @@ let gopi
   then
     begin
       print_endline
-	("**********************************************\n"
+	("******************************************************************\n"
 	 ^ "Process has name clash: alpha rename \""
 	 ^ (string_of_list linear_bound_vars) ^ "\"\n"
-	 ^ "**********************************************");
+	 ^ "******************************************************************");
       exit 0
     end  ;
   
@@ -693,7 +693,7 @@ let gopi
 	 then
 	   print_endline
 	     ("CATALYSER: " ^ (toStringLSpi catalyzerProcess)
-	      ^ "\n*********************************")
+	      ^ "\n******************************************************************")
       | _ ->
 	 print_endline ("TYPE-CHECKED -- MAX ORDER: " ^ stri maxOrder)
     end ;
@@ -746,39 +746,39 @@ let gopi
   with
   | (AlphaRename x) ->
      print_endline
-       ("**********************************************\n"
+       ("******************************************************************\n"
 	^ "Process has name clash: alpha rename \"" ^ x ^ "\"\n"
-	^ "**********************************************")
+	^ "******************************************************************")
        
   | LinearNotInProcess ->
      print_endline
-       ("**********************************************\n"
+       ("******************************************************************\n"
 	^ "Not supported: all linear channels must occur in process\n"
-	^ "**********************************************")
+	^ "******************************************************************")
        
   | ReservedKeyword s ->
      print_endline
-       ("**********************************************\n"
+       ("******************************************************************\n"
 	^ "Process uses reserved Go/GoPi keyword: rename " ^ s ^"\n"
-	^ "**********************************************")
+	^ "*******************************************************************")
        
   | SecretAndNotFull ->
      print_endline
-       ("**********************************************\n"
+       ("*******************************************************************\n"
 	^ "Not supported (not full secret process):\n deactivate -nf option\n"
-	^ "**********************************************")
+	^ "******************************************************************")
        
   | (UnSat s) -> 
      print_endline
-       ("*********************************\n"
+       ("******************************************************************\n"
 	^ "Process does not type check\n"
-	^ "*********************************");
+	^ "******************************************************************");
      
      if secretProcess runProcess && order_of_catalyzer > 0 && debugMode
      then
        print_endline
 	 ("CATALYZER: " ^ (toStringLSpi catalyzerProcess)
-	  ^ "\n*********************************");
+	  ^ "\n******************************************************************");
      
      if not debugMode
      then
@@ -834,7 +834,7 @@ let gopi
        
        print_endline
 	 ("UNSAT CORE: (DebugMode is On)\n" ^ s);
-       print_endline "********* SMT-LIB Header ********\n";
+       print_endline "************************ SMT-LIB Header *************************\n";
        
        if linearMode
        then
@@ -842,5 +842,5 @@ let gopi
        else
 	 printList Z3Init.init;
        
-       print_endline "********SMT-LIB Constraints********";
+       print_endline "********************* SMT-LIB Constraints ************************";
        printList !constrList

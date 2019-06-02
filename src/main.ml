@@ -112,20 +112,19 @@ let alpha_conversion = ref true
 let options = [
     ("-debug", Arg.Set debug, "Enable debug printing") ;
     ("-d", Arg.Set debug, "Enable debug printing") ;
-    ("-tc", Arg.Set type_check_only, "Type check process without generating go file");
-    ("-c", Arg.Set compile_only, "Generates go file without run it ") ;
+    ("-tc", Arg.Set type_check_only, "Type check only -- Type check process without generating go file");
+    ("-c", Arg.Set compile_only, "Compile only -- Generates the go file without run it ") ;
+    ("-print-process", Arg.Set print_process, "Print LSpi specification");
     ("-pp", Arg.Set print_process, "Print LSpi specification");
-    ("-dd-off", Arg.Clear deadlock_detection, "Disable static deadlock detection free linear channels");
-    ("-nf", Arg.Clear deadlock_detection, "Disable static deadlock detection on free linear channels");
+    ("-dd-off", Arg.Clear deadlock_detection, "Deactivate static deadlock detection on free linear channels");
     ("-cat", Arg.Set_int catalyzer, "Enable catalyzer of order n");
-    ("-print-cat", Arg.Set print_catalyzer, "Print catalyzer if -cat and process is type checked");
-    ("-pc", Arg.Set print_catalyzer, "Print catalyzer if -cat and process is type checked");
+    ("-print-cat", Arg.Set print_catalyzer, "Print catalyzer (if process type checks, otherwise use -d)");
+    ("-pc", Arg.Set print_catalyzer, "Print catalyzer (if process type checks, otherwise use -d)");
     ("-alpha-off", Arg.Clear alpha_conversion, "Disable alpha conversion");
     ("-af", Arg.Clear alpha_conversion, "Disable alpha conversion")]
 
 (** Wrapper of gopi called by Arg.parse *)
 let wrapper fileName =
-  print_endline "**********GOPI**********";
     try
       parseFile (fileName) ; 
       gopi
@@ -147,21 +146,22 @@ let wrapper fileName =
 (** Main *)
 let run_main syntax usage_string =
   Random.self_init ();
+  print_endline "****************************** GOPI ******************************";
   match Array.length Sys.argv  with
   | 1 ->
-     Arg.usage options (string_of_list syntax)
+     Arg.usage options (string_of_list syntax ^ usage_string)
   | _ ->
      Arg.parse options wrapper usage_string
 
 let lspi_syntax = 
     ["SYNTAX OF LSPI PROCESSES";
-     " P = new x {P} | hide x [P] | P|Q | let NameP = P in Q | (P) ";
+     " P = new x {P} | hide x [P] | P|Q | let id = P in Q | (P) ";
      "   | NameP | 0 | x!y | x!y.P | x?y | x?y.P | *P | print x";
      "   | <a,b,...,z> P /*linear declaration (not-binding)*/";
      "COMMENTS: # (FIRST CHAR OF LINE)"]
     
 let usage_string =
-  "See man ./gopi.man for the list of options supported by gopi."
+  "See man ./gopi.man for the synopsis.\n OPTIONS: "
     
 let _ =
   run_main lspi_syntax usage_string

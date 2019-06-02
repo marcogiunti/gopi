@@ -1,0 +1,52 @@
+.\" Manpage for gopi.
+.\" Contact marco.giunti@gmail.com to correct errors or typos.
+.TH man 8 "2 June 2019" "gopi man page"
+.SH NAME
+gopi \- The GoPi compiler 
+.SH SYNOPSIS
+gopi [OPTIONS] [PROCESS-FILE]
+.SH DESCRIPTION
+GoPi is a compiler for LSpi
+processes. Processes are type checked in Z3
+and executed in the go runtime system.
+.SH OPTIONS
+.B
+.IP -debug 
+Show the SMT-LIB constraints that cause type checking to fail
+.B
+.IP -d
+Shortcut for -debug 
+.B
+.IP -tc
+Type check only -- type checkes the process without generating go file
+.B
+.IP -c
+Compile only -- Generates go file without run it
+.B
+.IP -print-process
+Print LSpi specification
+.B
+.IP -print-process
+Shortcut for -pp
+.B
+.IP -dd-off 
+Deactivate static deadlock detection on free linear channels
+.B
+.IP -cat n
+Enable catalyzer of order n
+.B
+.IP -print-cat
+Print catalyzer (if process type checks, otherwise use -d)
+.B
+.IP -pc
+Shortcut for -print-cat
+.B
+.IP -alpha-off
+Disable alpha conversion
+.B
+.IP -af
+Shortcut for -alpha-off
+.SH SEE ALSO
+gopi (* without arguments *)
+.SH AUTHOR
+Marco Giunti (marco.giunti@gmail.com)

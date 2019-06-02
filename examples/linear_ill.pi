@@ -1,5 +1,17 @@
-# Exchange of linear channel
+###########################################################################
+#                               gopi                                      #
+#                                                                         #
+#  Copyright 2019 Marco Giunti. All rights reserved. This file is         #
+#  distributed under the terms of the GNU Public License version 3.0.     #
+#  This software is distributed in the hope that it will be useful,       #
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of         #
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          #
+#  GNU General Public License for more details.                           #
+#                                                                         #
+###########################################################################
+
+# EXCHANGE OF LINEAR CHANNEL 
 # ILL-TYPED --  a is not fully used
-# Type checks with OPTION -not-full
+# Type checks with OPTION -dd-off
 
 <a> b!a | b?z.c!z | c?x.x!e

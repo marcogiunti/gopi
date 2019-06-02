@@ -10,19 +10,11 @@
 #                                                                         #
 ###########################################################################
 
-# SECRET CHAT PROTOCOL VARIANT
-# ILL-TYPED with option -cat 6
+# SPOOLER
+# Channel p is protected by linear declaration
 
-let Alice = alice?ch1.(random?friend.friend!ch1 | ch1!helloAlice) in
+let Printer = <p> hide a [ a!c.p!a | a?x.spool!x | p?w] in
 
-let Bob = bot?msg.getMsg!msg | getRandom?rand1.rand1?stranger.getMsg?gmsg.stranger!gmsg in
+let Spooler = spool?z.print z in
 
-let Carl = carl?ch3.ch3!helloCarl in
-
-let Board = board?secret.*secret?message.print message in
-
-let ChatServer = <board> setup?user. hide chat [ user!chat | Alice | Bob | Carl | board!chat | Board] in	
-
-let  Chat = setup!alice.(random!bob | bot!random | random!carl)  in
-
-new getMsg {new bot {new setup { new random { new alice { new bob { new carl {Chat | ChatServer}}}}}}} 
+Printer | Spooler

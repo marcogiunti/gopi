@@ -1,8 +1,0 @@
-# SPOOLER
-# Channel p is protected by linear declaration
-
-let Printer = <p> hide a [ a!c.p!a | a?x.spool!x | p?w] in
-
-let Spooler = spool?z.print z in
-
-Printer | Spooler
