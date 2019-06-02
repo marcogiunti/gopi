@@ -1,8 +1,6 @@
 # GoPi
 The GoPi compiler transforms high level processes featuring linear and secret channels in executable Go programs.
 
-Execute gopi without parameters to see the syntax of processes and the list of options available.
-
 ## Prerequisites
 * OCaml
 * OCamlbuild
@@ -19,3 +17,25 @@ To compile the files, run
 ```shell
 make
 ```
+
+## Getting started
+
+To see the syntax of processes and the list of options available, run gopi without arguments
+
+```shell
+gopi
+```
+
+To compile and run a process in the directory examples, execute
+
+```shell
+gopi examples/spooler.pi
+```
+
+See the man page for more details
+
+```shell
+man ./manpage
+```
+
+
