@@ -4,6 +4,7 @@ The GoPi compiler transforms high level processes featuring linear and secret ch
 ## Prerequisites
 * OCaml
 * OCamlbuild
+* OCamlfind
 * Menhir
 * Z3 (Z3Prover/z3)
 * Go
