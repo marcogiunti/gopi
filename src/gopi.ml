@@ -515,7 +515,7 @@ let initializeGoCode mo =
 (************************ GOPI **************************)
       
 (** Secret processes must consider full linear channels.
-    The -nf option is not allowed  *)
+    The -dd-off option is not allowed  *)
 exception SecretAndNotFull
 (** All declared linear channels must occur in the process  *)
 exception LinearNotInProcess
@@ -525,12 +525,12 @@ exception ReservedKeyword of string
 (** GOPI - type checks and executes LS process
     $1 process
     $2 -- $9 options 
-    Options are described by $man ./gopi.man, or $./gopi: 
-    $2 -debug -d Show SML  constraints that cause type check to fail
+    Options are described by $man ./manpage, or $gopi: 
+    $2 -debug -d Show SMT-LIB  constraints that cause type check to fail
     $3 -tc Type check only
     $4 -c Compile only: type  checks  the process and generate the go file
     $5 -pp Print process
-    $6 -not-full -nf Deactivate static deadlock detetection on linear channels
+    $6 -dd-off Deactivate static deadlock detetection on linear channels
     $7 -cat n Generates catalyzer of order n
     $8 -pc Print catalyzer
     $9 -af Disable alpha conversion
@@ -765,7 +765,7 @@ let gopi
   | SecretAndNotFull ->
      print_endline
        ("*******************************************************************\n"
-	^ "Not supported (not full secret process):\n deactivate -nf option\n"
+	^ "Not supported (not full secret process):\n deactivate -dd-off option\n"
 	^ "******************************************************************")
        
   | (UnSat s) -> 
