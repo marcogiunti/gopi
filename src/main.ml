@@ -161,7 +161,7 @@ let lspi_syntax =
      "COMMENTS: # (FIRST CHAR OF LINE)"]
     
 let usage_string =
-  "See man ./gopi.man for the synopsis.\n OPTIONS: "
+  "See man ./manpage for the synopsis.\n OPTIONS: "
     
 let _ =
   run_main lspi_syntax usage_string
