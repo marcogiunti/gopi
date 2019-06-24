@@ -226,12 +226,9 @@ let rec subst z w =
   | VarP _ as p ->
      raise (Unsupported (toStringLSpi p))
   | p -> p
-
-     
 	   
 (** Short for string_of_int *)
 let stri = string_of_int
-
 
 (** Generate next "fresh" variable, used by Ast.alphaConvert *)
 let nextVal =
