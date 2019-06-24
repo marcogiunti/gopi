@@ -14,7 +14,6 @@
 open ListOps
 open Param
 
-
 (** Syntax of linear secret pi calculus (LSpi) processes *)			 
 type lsprocess =
   | Set of string list * lsprocess
