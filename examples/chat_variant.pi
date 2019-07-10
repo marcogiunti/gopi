@@ -15,7 +15,7 @@
 
 let Alice = alice?ch1.(random?friend.friend!ch1 | ch1!helloAlice) in
 
-let Bob = bot?msg.getMsg!msg | getRandom?rand1.rand1?stranger.getMsg?gmsg.stranger!gmsg in
+let Bob = bob?ch2.ch2!helloBob | bot?msg.getMsg!msg | getRandom?rand1.rand1?stranger.getMsg?gmsg.stranger!gmsg in
 
 let Carl = carl?ch3.ch3!helloCarl in
 
