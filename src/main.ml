@@ -107,6 +107,8 @@ let catalyzer = ref 0
 let print_catalyzer = ref false
 (** Arg option -af : default is true *)
 let alpha_conversion = ref true
+(** Arg option -r : default is false *)
+let data_races = ref false
 		  
 (** Arg options *)
 let options = [
@@ -121,7 +123,8 @@ let options = [
     ("-print-cat", Arg.Set print_catalyzer, "Print catalyzer (if process type checks, otherwise use -d)");
     ("-pc", Arg.Set print_catalyzer, "Print catalyzer (if process type checks, otherwise use -d)");
     ("-alpha-off", Arg.Clear alpha_conversion, "Disable alpha conversion");
-    ("-af", Arg.Clear alpha_conversion, "Disable alpha conversion")]
+    ("-af", Arg.Clear alpha_conversion, "Disable alpha conversion");
+    ("-r", Arg.Set data_races, " Activate Go data race detector (Go deadlock detection is off, Go 1.9 >=)")]
 
 (** Wrapper of gopi called by Arg.parse *)
 let wrapper fileName =
@@ -134,6 +137,7 @@ let wrapper fileName =
 	!deadlock_detection
 	!catalyzer !print_catalyzer
 	!alpha_conversion
+	!data_races
     with
     | Parser.Error ->
        printf

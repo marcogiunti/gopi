@@ -524,7 +524,7 @@ exception ReservedKeyword of string
 			       
 (** GOPI - type checks and executes LS process
     $1 process
-    $2 -- $9 options 
+    $2 -- $10 options 
     Options are described by $man ./manpage, or $gopi: 
     $2 -debug -d Show SMT-LIB  constraints that cause type check to fail
     $3 -tc Type check only
@@ -534,6 +534,7 @@ exception ReservedKeyword of string
     $7 -cat n Generates catalyzer of order n
     $8 -pc Print catalyzer
     $9 -af Disable alpha conversion
+    $10 -r Activate Go data race detector (Go deadlock detection is off, Go 1.9 >=)
  *)
 let gopi
       lSprocess
@@ -541,7 +542,8 @@ let gopi
       print_process
       deadlock_detection
       order_of_catalyzer print_catalyzer
-      alpha_conversion =
+      alpha_conversion
+      data_races =
   let rec string_of_list = function
     | [] -> ""
     | h::t -> h ^ " " ^(string_of_list t) in
@@ -734,11 +736,15 @@ let gopi
 	if not (compile_only)
 	then
 	  begin
-	    print_endline ("RUNNING THE PROCESS (go run -race " ^ goFile ^")");
+	    let run_command =
+	      match data_races with
+	      | true -> " run -race "
+	      | false -> " run " in 
+	    print_endline ("RUNNING THE PROCESS (go" ^ run_command ^ goFile ^")");
 	    if debugMode
 	    then
 	      print_endline ("Param.goPath is set to: " ^ goPath);
-	    exit(Sys.command((Param.goPath ^ " run  " ^ goFile)))
+	    exit(Sys.command((Param.goPath ^ run_command ^ goFile)))
 	  end
 	    
       end
