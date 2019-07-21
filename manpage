@@ -46,6 +46,9 @@ Disable alpha conversion
 .B
 .IP -af
 Shortcut for -alpha-off
+.B
+.IP -r
+Activate Go data race detector (Go deadlock detection is off, Go 1.9 >=)
 .SH SEE ALSO
 gopi (* without arguments *)
 .SH AUTHOR
