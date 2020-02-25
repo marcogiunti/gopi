@@ -10,21 +10,7 @@
 #                                                                         #
 ###########################################################################
 
-# SECRET CHAT PROTOCOL
-# ILL-TYPED with OPTION -cat 2 -- context can receive chat from pub 
+# FORWARD SECRECY -- VARIANT
+# ILL-TYPED with OPTION -cat 2 -- context can receive c from pub
 
-let Alice = priv?ch1.ch1!helloAlice in
-
-let Bob = priv?ch2.(ch2!helloBob | pub!ch2) in
-
-let Carl = pub?ch3.ch3!helloCarl in
-
-let Board = *chat?message.print message in
-
-let Setup = *priv!chat in
-
-let  Group = new priv { Setup | Alice | Bob } in
-
-let Chat = hide chat [ Board | Group | Carl ] in
-
-Chat
+new a { hide c [ a!c.c!pwd | a?x.x?y.pub!x] }
