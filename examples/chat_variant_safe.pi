@@ -1,0 +1,27 @@
+###########################################################################
+#                               gopi                                      #
+#                                                                         #
+#  Copyright 2019 Marco Giunti. All rights reserved. This file is         #
+#  distributed under the terms of the GNU Public License version 3.0.     #
+#  This software is distributed in the hope that it will be useful,       #
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of         #
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          #
+#  GNU General Public License for more details.                           #
+#                                                                         #
+###########################################################################
+
+# SECRET CHAT PROTOCOL VARIANT
+
+let Alice = alice?ch1.(random?friend.friend!ch1 | ch1!helloAlice) in
+
+let Bob = bob?ch2.ch2!helloBob | bot?msg.getMsg!msg | getRandom?rand1.rand1?stranger.getMsg?gmsg.stranger!gmsg in
+
+let Carl = carl?ch3.ch3!helloCarl in
+
+let Board = board?secret.*secret?message.print message in
+
+let ChatServer = setup?user. hide chat [ user!chat | Alice | Bob | Carl | board!chat | Board] in	
+
+let  Chat = setup!alice.(random!bob | random!carl)  in
+
+<board, getMsg, setup> new bot  { new random { new alice { new bob { new carl {Chat | ChatServer}}}}}
