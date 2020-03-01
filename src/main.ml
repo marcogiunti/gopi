@@ -122,13 +122,13 @@ let options = [
     ("-print-process", Arg.Set print_process, "Print LSpi specification");
     ("-pp", Arg.Set print_process, "Print LSpi specification");
     ("-dd-off", Arg.Clear deadlock_detection, "Deactivate static deadlock detection on free linear channels");
-    ("-cat n", Arg.Set_int catalyzer, "Enable catalyzer of order of the non-negative n");
+    ("-cat", Arg.Set_int catalyzer, "Enable catalyzer of order of the non-negative n");
     ("-print-cat", Arg.Set print_catalyzer, "Print catalyzer (if process type checks, otherwise use -d)");
     ("-pc", Arg.Set print_catalyzer, "Print catalyzer (if process type checks, otherwise use -d)");
     ("-alpha-off", Arg.Clear alpha_conversion, "Disable alpha conversion");
     ("-af", Arg.Clear alpha_conversion, "Disable alpha conversion");
     ("-r", Arg.Set data_races, " Activate Go data race detector (Go deadlock detection is off, Go 1.9 >=)");
-    ("-t n", Arg.Set_int timeouts, " Activate timeouts of n milliseconds in channel queues to push forward non-determinism -- warning: can effect the performance")]
+    ("-t", Arg.Set_int timeouts, " Set dequeue timeouts to n milliseconds (default is 0) -- warning: can effect the performance")]
 
 (** Wrapper of gopi called by Arg.parse *)
 let wrapper fileName =

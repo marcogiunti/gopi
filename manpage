@@ -51,7 +51,7 @@ Shortcut for -alpha-off
 Activate Go data race detector (Go deadlock detection is off, Go 1.9 >=)
 .B
 .IP -t n
-Activate timeouts of n milliseconds in channel queues to push forward non-determinism -- warning: can effect the performance
+Set dequeue timeouts to n milliseconds (default is 0) -- warning: can effect the performance
 .SH SEE ALSO
 gopi (* without arguments *)
 .SH AUTHOR

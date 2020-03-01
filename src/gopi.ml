@@ -68,7 +68,7 @@ let registerNew level (n,gv) =
    ^ (indentN level) ^ " _ = " ^n
   ]
     
-(** [toGoCode linear_channels p timeouts] adds go code corresponding to LSpi process 
+(** [toGoCode linear_channels p default_timeout] adds go code corresponding to LSpi process 
     and returns (number of timeouts, timeout_is_on), where the timeout is
     deactivated on replication *)
 let toGoCode linear_channels p timeouts =
@@ -122,11 +122,11 @@ let toGoCode linear_channels p timeouts =
 	 | _ -> false in
        if not (equivZero p) then
 	 countActive := false;
+       let tm = max Param.timeout timeouts in 
        addGoList (level) ["key := RandStringRunes(32)";
 			  "fmt.Printf(\"KEY: %s\\n\", key)"];
        addGoList (level) ["for{"];
        
-       let tm = max Param.timeout timeouts in
        addGoList (level+1) ["time.Sleep(time.Millisecond*"^stri(tm)^")"];
        addGoList (level+1) ["counter.Inc(key)"];
        toGoCodeR linear_channels (level+1) p; 
@@ -254,7 +254,7 @@ let rec goRegister acc timeouts = function
        "    }";
        "}\n"]
   | n ->
-     let tm = max Param.timeout timeouts in
+     let tm = max Param.timeout timeouts in 
      goRegister
        (acc@[
 	   "    case "^(stri n) ^ " : ";
@@ -266,7 +266,7 @@ let rec goRegister acc timeouts = function
 	   "        t.ord"^(stri n) ^ ".dequeue[c] =  func (){";
 	   "            timeout := make(chan bool)";
 	   "            go func(){";
-	   "                time.Sleep(time.Millisecond*"^(stri tm)^")";
+	   "                time.Sleep(time.Millisecond*"^stri(tm)^")";
 	   "                timeout <- true";
 	   "            }()";
 	   "            t.ord"^(stri n) ^ ".mux.Lock()";
@@ -298,7 +298,7 @@ let rec goRegister acc timeouts = function
 	   "            }";
 	   "            t.ord"^(stri n) ^ ".mux.Unlock()";
 	   "        }";
-	   "        return nil"]) timeouts (n-1)
+	   "        return nil"]) timeouts (n-1) 
 
 (** Returns the goQueueChan type  *)
 let rec goQueueChan acc = function
@@ -436,8 +436,8 @@ let rec goToString acc = function
 
 (*********************** MAIN ***************************)
 
-(** [initializeGoCode mo t] returns header of the Go file
-    with maximum order mo and timeouts t*)
+(** [initializeGoCode mo default_timeout ] returns header of the Go file
+    with maximum order mo *)
 let initializeGoCode mo timeouts =
   GoInit.license 
   @ GoInit.bugs
@@ -472,7 +472,7 @@ let initializeGoCode mo timeouts =
   @ ["/********************************* METHODS **********************************/"]
   @ (goShuffle [] mo)
   @ (goIgnore mo)
-  @ (goRegister [] mo timeouts)
+  @ (goRegister [] timeouts mo)
   @ (goDequeue [] mo)
   @ (goQueue [] mo)
   @ (goChanOf [] mo)
@@ -537,7 +537,7 @@ exception ReservedKeyword of string
     $8 -pc Print catalyzer
     $9 -af Disable alpha conversion
     $10 -r Activate Go data race detector (Go deadlock detection is off, Go 1.9 >=)
-    $11 -t n Activate timeouts of n milliseconds in channel queues to push forward non-determinism
+    $11 -t n Set dequeue timeouts to n milliseconds (default is 0)
  *)
 let gopi
       lSprocess
@@ -721,7 +721,7 @@ let gopi
 	addGo 0 "func main() {";
 	addGo 1 "key = \"0\"";
 	addGo 1 "fmt.Printf(\"*****Running process proc1******\\n\")";
-	let countDone, countActive = toGoCode linear_channels runProcess timeouts  in
+	let countDone, countActive = toGoCode linear_channels runProcess timeouts in
 	if countActive
 	then
 	  addGoList 1 [("for i := 0; i < " ^ (stri countDone) ^ "; i++ {");
