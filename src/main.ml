@@ -128,7 +128,7 @@ let options = [
     ("-alpha-off", Arg.Clear alpha_conversion, "Disable alpha conversion");
     ("-af", Arg.Clear alpha_conversion, "Disable alpha conversion");
     ("-r", Arg.Set data_races, " Activate Go data race detector (Go deadlock detection is off, Go 1.9 >=)");
-    ("-t", Arg.Set_int timeouts, " Set dequeue timeouts to n milliseconds (default is 0) -- warning: can effect the performance")]
+    ("-t", Arg.Set_int timeouts, " Set dequeue timeouts to n milliseconds (default is 0) -- warning: can affect the performance")]
 
 (** Wrapper of gopi called by Arg.parse *)
 let wrapper fileName =
