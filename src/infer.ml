@@ -160,14 +160,14 @@ let rec addLinearChannels = function
 (** Prefix is a set to collect prefixes *)
 module Prefix =
   Set.Make(struct
-	      let compare = Pervasives.compare
+	      let compare = Stdlib.compare
 	      type t = string
 	    end)
 	  
 (** Allow is a set to collect allowed integers *)
 module Allow =
   Set.Make(struct
-	      let compare = Pervasives.compare
+	      let compare = Stdlib.compare
 	      type t = int
 	    end)
 

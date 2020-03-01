@@ -109,6 +109,9 @@ let print_catalyzer = ref false
 let alpha_conversion = ref true
 (** Arg option -r : default is false *)
 let data_races = ref false
+(** Arg option -t : default is 0 *)
+let timeouts = ref 0
+		  
 		  
 (** Arg options *)
 let options = [
@@ -119,12 +122,13 @@ let options = [
     ("-print-process", Arg.Set print_process, "Print LSpi specification");
     ("-pp", Arg.Set print_process, "Print LSpi specification");
     ("-dd-off", Arg.Clear deadlock_detection, "Deactivate static deadlock detection on free linear channels");
-    ("-cat", Arg.Set_int catalyzer, "Enable catalyzer of order n");
+    ("-cat n", Arg.Set_int catalyzer, "Enable catalyzer of order of the non-negative n");
     ("-print-cat", Arg.Set print_catalyzer, "Print catalyzer (if process type checks, otherwise use -d)");
     ("-pc", Arg.Set print_catalyzer, "Print catalyzer (if process type checks, otherwise use -d)");
     ("-alpha-off", Arg.Clear alpha_conversion, "Disable alpha conversion");
     ("-af", Arg.Clear alpha_conversion, "Disable alpha conversion");
-    ("-r", Arg.Set data_races, " Activate Go data race detector (Go deadlock detection is off, Go 1.9 >=)")]
+    ("-r", Arg.Set data_races, " Activate Go data race detector (Go deadlock detection is off, Go 1.9 >=)");
+    ("-t n", Arg.Set_int timeouts, " Activate timeouts of n milliseconds in channel queues to push forward non-determinism -- warning: can effect the performance")]
 
 (** Wrapper of gopi called by Arg.parse *)
 let wrapper fileName =
@@ -138,6 +142,7 @@ let wrapper fileName =
 	!catalyzer !print_catalyzer
 	!alpha_conversion
 	!data_races
+	!timeouts
     with
     | Parser.Error ->
        printf
@@ -159,8 +164,8 @@ let run_main syntax usage_string =
 
 let lspi_syntax = 
     ["SYNTAX OF LSPI PROCESSES";
-     " P = new x {P} | hide x [P] | P|Q | let id = P in Q | (P) ";
-     "   | NameP | 0 | x!y | x!y.P | x?y | x?y.P | *P | print x";
+     " P = new x {P} | hide x [P] | P|Q | let Id = P in Q | (P) ";
+     "   | Id | 0 | x!y | x!y.P | x?y | x?y.P | *P | print x";
      "   | <a,b,...,z> P /*linear declaration (not-binding)*/";
      "COMMENTS: # (FIRST CHAR OF LINE)"]
     

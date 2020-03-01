@@ -22,7 +22,7 @@ let constraintFile = "types.z3"
 let modelFile = "core.z3"
 
 (** Timeout of dequeue operations in Go channel servers *)
-let timeout = 500 (*MILLISECONDS*)
+let timeout = 0 (*MILLISECONDS*)
 
 (** The indentation space in Go code *)       
 let iNDENT = "    "
