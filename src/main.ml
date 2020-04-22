@@ -133,7 +133,10 @@ let options = [
 (** Wrapper of gopi called by Arg.parse *)
 let wrapper fileName =
     try
-      parseFile (fileName) ; 
+      parseFile (fileName) ;
+      if (!catalyzer > 0)
+      then
+	type_check_only := true;
       gopi
 	!processRef
 	!debug !type_check_only !compile_only
