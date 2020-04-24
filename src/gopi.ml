@@ -126,8 +126,6 @@ let toGoCode linear_channels p timeouts =
        addGoList (level) ["key := RandStringRunes(32)";
 			  "fmt.Printf(\"KEY: %s\\n\", key)"];
        addGoList (level) ["for{"];
-       
-       addGoList (level+1) ["time.Sleep(time.Millisecond*"^stri(tm)^")"];
        addGoList (level+1) ["counter.Inc(key)"];
        toGoCodeR linear_channels (level+1) p; 
        addGoList (level) ["}"]
