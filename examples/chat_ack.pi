@@ -1,0 +1,20 @@
+
+# SECRET CHAT PROTOCOL
+# deadlocked
+
+
+let Alice = priv?ch1.ch1!helloAlice in
+
+let Bob = priv?ch2.(ch2!helloBob | pub!ch2.ack!ok) in
+
+let Carl = ack?yes.confirmed!yes.pub?ch3.ch3!helloCarl in
+
+let Board = *chat?message.print message in
+
+let Setup = *priv!chat in
+
+let Group = new priv { Setup | Alice | Bob } in
+
+let Chat = hide chat [ Board | Group | Carl ] in
+
+<ack, pub> Chat
