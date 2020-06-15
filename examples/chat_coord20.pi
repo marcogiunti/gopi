@@ -1,0 +1,32 @@
+###########################################################################
+#                               gopi                                      #
+#                                                                         #
+#  Copyright 2019 Marco Giunti. All rights reserved. This file is         #
+#  distributed under the terms of the GNU Public License version 3.0.     #
+#  This software is distributed in the hope that it will be useful,       #
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of         #
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          #
+#  GNU General Public License for more details.                           #
+#                                                                         #
+###########################################################################
+
+# SECRET CHAT PROTOCOL
+# ILL-TYPED with OPTION -cat 3 
+# Context can receive priv from pub and chat from priv 
+
+
+let Alice = priv?ch1.ch1!helloAlice in
+
+let Bob = priv?ch2.ch2!helloBob.pub!priv in
+
+let Carl = pub?p.p?ch3.ch3!helloCarl in
+
+let Board = *chat?message.print message in
+
+let Setup = *priv!chat in
+
+let Group = new priv { Setup | Alice | Bob } in
+
+let Chat = hide chat [ Board | Group | Carl ] in
+
+Chat
