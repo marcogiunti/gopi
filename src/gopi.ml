@@ -60,10 +60,11 @@ let rec addGoList n = function
 
 (** [registerNew level (n, gv)] returns fresh entry Gamma.register(n, v) *)
 let registerNew level (n,gv) =
-  [(indentN level) ^"Gamma.register(\""^ n ^ "\"+ string(counter.Value(key)), \""
+  [(indentN level) ^"s := string(counter.Value(key))\n"
+   ^ "Gamma.register(\""^ n ^ "\"+ s, \""
    ^ (stri (toInt gv))^"\")" 
    ^ (indentN level) ^ n
-   ^ " := Gamma.chanOf(\"" ^ n ^ "\"+ string(counter.Value(key))).("
+   ^ " := Gamma.chanOf(\"" ^ n ^ "\"+ s).("
    ^ (toString gv) ^ ")" ^ "\n"
    ^ (indentN level) ^ " _ = " ^n
   ]
@@ -122,7 +123,7 @@ let toGoCode linear_channels p timeouts =
 	 | _ -> false in
        if not (equivZero p) then
 	 countActive := false;
-       let tm = max Param.timeout timeouts in 
+       let _ = max Param.timeout timeouts in 
        addGoList (level) ["key := RandStringRunes(32)";
 			  "fmt.Printf(\"KEY: %s\\n\", key)"];
        addGoList (level) ["for{"];
