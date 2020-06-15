@@ -1,4 +1,18 @@
+###########################################################################
+#                               gopi                                      #
+#                                                                         #
+#  Copyright 2019 Marco Giunti. All rights reserved. This file is         #
+#  distributed under the terms of the GNU Public License version 3.0.     #
+#  This software is distributed in the hope that it will be useful,       #
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of         #
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          #
+#  GNU General Public License for more details.                           #
+#                                                                         #
+###########################################################################
+
 #Sum protocol -- Coordination Talk
+#
+#gopi -t 1000 examples/sum_talk.pi 
 
 let Sum1 = new r1 { for1!s1.for2!r1.r1?x1.c!x1 } in 
 
