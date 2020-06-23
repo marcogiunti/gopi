@@ -27,7 +27,8 @@ To see the syntax of processes and the list of options available, run gopi witho
 gopi
 ```
 
-To compile and run a process in the directory examples, execute
+To compile and run a process in the directory examples (with timeout =
+500ms), execute
 
 ```shell
 gopi -t 500 examples/spooler.pi
