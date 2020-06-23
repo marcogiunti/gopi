@@ -30,7 +30,7 @@ gopi
 To compile and run a process in the directory examples, execute
 
 ```shell
-gopi examples/spooler.pi
+gopi -t 500 examples/spooler.pi
 ```
 
 See the man page for more details
