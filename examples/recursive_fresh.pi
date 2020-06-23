@@ -13,4 +13,3 @@
 # RECURSIVE PRINT OF FRESH CHANNEL
 
 *( a?x.print x | new b { a!b } )
-#*( print a | new b { a!b })
