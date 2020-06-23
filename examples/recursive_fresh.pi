@@ -11,5 +11,6 @@
 ###########################################################################
 
 # RECURSIVE PRINT OF FRESH CHANNEL
+# Use option -t 500 for starters
 
 *( a?x.print x | new b { a!b } )
