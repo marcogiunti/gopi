@@ -1,6 +1,6 @@
 .\" Manpage for gopi.
 .\" Contact marco.giunti@gmail.com to correct errors or typos.
-.TH man 8 "2 June 2019" "gopi man page"
+.TH man 8 "25 September 2021" "gopi man page"
 .SH NAME
 gopi \- The GoPi compiler 
 .SH SYNOPSIS
@@ -26,8 +26,8 @@ Compile only -- Generates go file without run it
 .IP -print-process
 Print LSpi specification
 .B
-.IP -print-process
-Shortcut for -pp
+.IP -pp
+Shortcut for -print-process
 .B
 .IP -dd-off 
 Deactivate static deadlock detection on free linear channels
