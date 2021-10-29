@@ -2,7 +2,7 @@
 The GoPi compiler transforms high level processes featuring linear and secret channels in executable Go programs.
 
 ## Prerequisites
-* OCaml
+* OCaml >= 4.07
 * OCamlbuild
 * OCamlfind
 * Menhir
